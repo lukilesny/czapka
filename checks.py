@@ -15,6 +15,7 @@ def check(inscription):
     return result, alphabet
 
 def generate_results_html(letters, checked, left):
+    letters = letters.upper()
     html = Airium()
 
     html('<!DOCTYPE html>')

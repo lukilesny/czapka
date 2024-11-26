@@ -1,8 +1,9 @@
 from flask import Flask, redirect, render_template_string, url_for, request, render_template
-from checks import *
+from checks import check, generate_results_html
 
 app = Flask(__name__)
 
+@app.route('/')
 @app.route('/start')
 def start_page():
    return render_template('input.html')
