@@ -2,7 +2,6 @@ from airium import Airium
 
 def check(inscription):
     alphabet = "".join(sorted("EKANBBBDR#!IAFFGGGWYADZILN4GEERAPPPQCOOXOORUJTMVVCWVEXANNZKO#LHEJJESTESTUSAMA?"))
-    inscription = inscription.upper()
     result = [True]*len(inscription)
 
     for idx, char in enumerate(inscription):
@@ -15,7 +14,6 @@ def check(inscription):
     return result, alphabet
 
 def generate_results_html(letters, checked, left):
-    letters = letters.upper()
     html = Airium()
 
     html('<!DOCTYPE html>')
