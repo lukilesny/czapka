@@ -1,7 +1,11 @@
 from airium import Airium
 
 def check(inscription):
-    alphabet = "".join(sorted("EKANBBBDR#!IAFFGGGWYADZILN4GEERAPPPQCOOXOORUJTMVVCWVEXANNZKO#LHEJJESTESTUSAMA?"))
+    set1 = "EKANBBBDR#!IAFFGGGWYADZILN4GEERAPPPQCOOXOORUJTMVVCWVEXANNZKO#LHEJJESTESTUSAMA?"
+    # my cap with 'LUCADIBOSCO' was stolen, I bought a second one
+    set2 = set1.replace("L", "",1).replace("U", "",1).replace("C", "",2).replace("A", "",1).replace("D", "",1).replace("I", "",1).replace("B", "",1).replace("O", "",2).replace("S", "",1)
+    set = (set1+set2).replace("C", "Q",1) # on stolen cap i have Q repainted to C
+    alphabet = "".join(sorted(set))
     result = [True]*len(inscription)
 
     for idx, char in enumerate(inscription):
