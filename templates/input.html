@@ -1,32 +1,129 @@
 <html>
-   <body>
-      <form action = "/input" method = "post">
-         <fieldset>
-            <legend>Wprowadź literki:</legend>
-            <input type = "text" name = "chars" size="60" required/>
-         </fieldset>
-         <p></p>
-         <fieldset>
-            <legend>Wybierz zestaw liter:</legend>
-            
-            <div>
-               <label>
-                  <input type="checkbox" name="zestaw" value="standard" checked /> <!-- bez id i value -->
-                  Standardowy
-               </label>
-            </div>
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CROPP Czapka checker</title>
+    <script>
+        function validateForm(event) {
+            const checkboxes = document.querySelectorAll('input[name="zestaw"]');
+            let isChecked = false;
 
-            <div>
-               <label>
-                  <input type="checkbox" name="zestaw" value="luca_di_bosqo" /> <!-- required --> <!-- bez id i value -->
-                  Bez zajumanych*
-               </label>
-            </div>
-         </fieldset>
-         <p></p>
-         <input type = "submit" value = "submit" />
-         <p></p>
-         <p>*zestaw standardowy bez skradzionych literek: LUCA DI BOSCO</p>
-      </form>
-   </body>
+            // Check if at least one checkbox is checked
+            checkboxes.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    isChecked = true;
+                }
+            });
+
+            if (!isChecked) {
+                // Prevent form submission if no checkbox is selected
+                event.preventDefault();
+                alert('Wybierz przynajmniej jeden zestaw z gwiazdką');
+            }
+        }
+
+        // Add event listener to the form submit event
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', validateForm);
+        });
+
+        // toggle inputs on click  
+
+      //   function toggleInputs(checkbox) {
+      //    var input2 = document.getElementById('name3');
+      //       var input3 = document.getElementById('name4');
+      //       if (checkbox.checked) {
+      //           input2.disabled = false;
+      //           input3.disabled = false;
+      //           // Optionally, you can focus the first input
+      //           input2.focus();
+      //       } else {
+      //           input2.disabled = true;
+      //           input3.disabled = true;
+      //       }
+      //   }
+
+      //   function toggleInputs(checkbox) {
+      //       var inputs = document.getElementsByName('name50');
+      //       inputs.forEach(function(input) {
+      //           input.disabled = !checkbox.checked;
+      //       });
+      //       if (checkbox.checked && inputs.length > 0) {
+      //           inputs[0].focus();
+      //       }
+      //   }
+    </script>
+</head>
+<body style="font-family:verdana">
+   <form action = "/input" method = "post">
+      <fieldset>
+         <legend>Wprowadź literki:</legend>
+         <input type = "text" name = "chars" size="60" required/>
+      </fieldset>
+      <p></p>
+      <fieldset>
+         <legend>Wybierz zestaw liter:</legend>
+         
+         <div>
+            <label>
+               <input type="checkbox" name="zestaw" value="standard" checked />
+                  Standardowy<span style=color:red;>*</span>
+            </label>
+         </div>
+
+         <div>
+            <label>
+               <input type="checkbox" name="zestaw" value="luca_di_bosqo" />
+                  Bez zajumanych<span style=color:red;>*</span>
+            </label>
+         </div>
+
+         <div><br></div>
+
+         <div>
+            <label>
+               <!-- move to script section -->
+               <!-- to do: uzyc tego -->
+               <input type="checkbox" onclick="
+                  var input = document.getElementById('name2');
+                  if (this.checked) {
+                     input.disabled = false;
+                     input.focus();
+                  } else {
+                     input.disabled=true;
+                  }" />
+                  Zgubione...
+               <input id="name2" name="name2" disabled="disabled" />
+            </label>
+         </div>
+
+         <div>
+            <label>
+               <!-- move to script section -->
+               <!-- to do: uzyc tego -->
+               <input type="checkbox" onclick=" 
+                  var input2 = document.getElementById('name3');
+                  var input3 = document.getElementById('name4');
+                  if (this.checked) {
+                     input2.disabled = false;
+                     input3.disabled = false;
+                     input2.focus();
+                  } else {
+                     input2.disabled=true;
+                     input3.disabled=true;
+                  }" />
+               <input id="name3" name="name50" disabled="disabled" />
+                -> 
+               <input id="name4" name="name50" disabled="disabled" />
+            </label>
+         </div>
+      </fieldset>
+      <p></p>
+      <input type = "submit" value = "submit" />
+      <p></p>
+      <p>*Wybierz conajmniej jeden zestaw liter <br>
+          Bez zajumanych - zestaw standardowy bez skradzionych literek: LUCA DI BOSCO i podmienionym C -> Q</p>
+   </form>
+</body>
 </html>
