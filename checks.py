@@ -5,17 +5,21 @@ standard_set = "EKANBBBDR#!IAFFGGGWYADZILN4GEERAPPPQCOOXOORUJTMVVCWVEXANNZKO#LHE
 strings_dict = {
     "standard": standard_set,
     "luca_di_bosqo": standard_set.replace("L", "",1).replace("U", "",1).replace("C", "",1).replace("A", "",1).replace("D", "",1).replace("I", "",1).replace("B", "",1).replace("O", "",2).replace("S", "",1).replace("Q", "",1),
-
 }
 
-def generate_sets(selected):
-    output_str = ""
+def generate_alfabet(selected, added, rmed):
+    output_str = added
     for key in selected:
         if key in strings_dict:
             output_str += strings_dict[key]
         else:
-            print("No key {} in hardcoded sets of letters", key)
-    print("generate_sets", selected, output_str)
+            print("ERROR: No key {} in hardcoded sets of letters", key)
+    for rm in rmed:
+        if rm in output_str:
+            output_str = output_str.replace(rm, "", 1)
+        else:
+            print("ERROR: Tried to remove {} from {}", rm, output_str)
+    # errors should be showed to user
     return "".join(sorted(output_str))
 
 def check(inscription, alphabet):
