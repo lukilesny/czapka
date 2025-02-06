@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CROPP Czapka checker</title>
     <script>
-        function validateForm(event) {
+         function validateForm(event) {
             const checkboxes = document.querySelectorAll('input[name="zestaw"]');
             let isChecked = false;
 
@@ -35,6 +35,37 @@
             const form = document.querySelector('form');
             form.addEventListener('submit', validateForm);
         });
+
+      function boxclicked(checkbox, text_inputs){
+         
+         alert(text_inputs);
+         // TODO: when unchecked we get internalerror
+         var inputs = document.getElementsByName(text_inputs);
+         // this should be arg?
+         if (checkbox.checked) {
+          // TODO: or onclick textinput doing all these (this as script)
+            
+            alert('2');
+            inputs[0].disabled = false;
+            inputs[1].disabled = false;
+            inputs[0].focus();
+         } else { // when unchecked we should flag data to not send
+            inputs[0].disabled=true;
+            inputs[1].disabled=true;
+            alert('3');
+         }
+      }
+
+      // var replace_from = document.getElementById('replace_from');
+      //             var replace_to = document.getElementById('replace_to');
+      //             if (this.checked) { // TODO: or onclick textinput doing all these (this as script)
+      //                replace_from.disabled = false;
+      //                replace_to.disabled = false;
+      //                replace_from.focus();
+      //             } else {
+      //                replace_from.disabled=true;
+      //                replace_to.disabled=true;
+      //             }"
 
         // toggle inputs on click  
 
@@ -92,14 +123,7 @@
          <div>
             <label>
                <!-- TODO: move to script section -->
-               <input type="checkbox" onclick=" // TODO: when unchecked we get internalerror
-                  var lost_input = document.getElementById('lost');
-                  if (this.checked) { // TODO: or onclick textinput doing all these (this as script)
-                     lost_input.disabled = false;
-                     lost_input.focus();
-                  } else {
-                     lost_input.disabled=true;
-                  }" />
+               <input type="checkbox" onclick="boxclicked(this, 'lost')" />
                   Zgubione...
                <input id="lost" name="lost" disabled="disabled" />
             </label>
@@ -108,17 +132,8 @@
          <div>
             <label>
                <!-- TODO: move to script section -->
-               <input type="checkbox" onclick=" // TODO: when unchecked we get internalerror
-                  var replace_from = document.getElementById('replace_from');
-                  var replace_to = document.getElementById('replace_to');
-                  if (this.checked) { // TODO: or onclick textinput doing all these (this as script)
-                     replace_from.disabled = false;
-                     replace_to.disabled = false;
-                     replace_from.focus();
-                  } else {
-                     replace_from.disabled=true;
-                     replace_to.disabled=true;
-                  }" />
+               <input type="checkbox" onclick="boxclicked(this, 'replace')" />
+               Podmienione
                <input id="replace_from" name="replace" disabled="disabled" />
                 -> 
                <input id="replace_to" name="replace" disabled="disabled" />
